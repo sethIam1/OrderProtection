@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!-- Backend Order Validation Plugin -->
+    <type name="Magento\Quote\Model\QuoteManagement">
+        <plugin name="ecommerce121_orderprotection_quote_validation" type="Ecommerce121\OrderProtection\Plugin\Quote\OrderValidationPlugin" />
+    </type>
+    
+    <!-- GraphQL Plugins -->
+    <type name="Magento\QuoteGraphQl\Model\Resolver\PlaceOrder">
+        <plugin name="ecommerce121_orderprotection_graphql_placeorder" type="Ecommerce121\OrderProtection\Plugin\GraphQl\PlaceOrderPlugin" />
+    </type>
+    <type name="Magento\QuoteGraphQl\Model\Resolver\SetBillingAddressOnCart">
+        <plugin name="ecommerce121_orderprotection_graphql_billingaddress" type="Ecommerce121\OrderProtection\Plugin\GraphQl\BillingAddressPlugin" />
+    </type>
+    <type name="Magento\QuoteGraphQl\Model\Resolver\SetGuestEmailOnCart">
+        <plugin name="ecommerce121_orderprotection_graphql_guestemail" type="Ecommerce121\OrderProtection\Plugin\GraphQl\GuestEmailValidatorPlugin" />
+    </type>
+</config>
