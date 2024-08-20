@@ -8,11 +8,18 @@ class OrderValidationPlugin
 {
     public function beforeSubmit(QuoteManagement $subject, $quote, $paymentData = [])
     {
-        $address = $quote->getBillingAddress();
-        $this->validateField($address->getFirstname(), 'First Name');
-        $this->validateField($address->getLastname(), 'Last Name');
+        $this->validateAddress($quote->getBillingAddress(), 'Billing');
+        if (!$quote->isVirtual()) {
+            $this->validateAddress($quote->getShippingAddress(), 'Shipping');
+        }
         
         return [$quote, $paymentData];
+    }
+
+    private function validateAddress($address, $addressType)
+    {
+        $this->validateField($address->getFirstname(), $addressType . ' First Name');
+        $this->validateField($address->getLastname(), $addressType . ' Last Name');
     }
 
     private function validateField($value, $fieldName)
